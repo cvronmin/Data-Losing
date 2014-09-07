@@ -1,13 +1,13 @@
 package net.Minproject.ML;
 
 public class ClientProxyML extends CommonProxyML{
-	  public void registerRenderers(ML ins)
+	  public void registerRenderers(DL ins)
 	  {
 		  ins.biome.registerRenderers();
 		  ins.dati.registerRenderers();
+		  ins.wda.registerRenderers();
           ins.format.registerRenderers();
           ins.bit.registerRenderers();
-//          ins.death.registerRenderers();
 		  ins.dim1.registerRenderers();
 		  ins.sword.registerRenderers();
 		  ins.armor.registerRenderers();
