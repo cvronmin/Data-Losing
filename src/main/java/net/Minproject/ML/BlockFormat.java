@@ -8,6 +8,7 @@ import net.minecraft.block.material.*;
 import net.minecraft.creativetab.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -19,13 +20,14 @@ public class BlockFormat {
 
 public BlockFormat(){}
 
-public static Block block;
+public static Format block;
 
-public Object instance;public int addFuel(ItemStack fuel){return 0;}
+public Object instance;
+public int addFuel(ItemStack fuel){return 0;}
 public void serverLoad(FMLServerStartingEvent event){}
 public void preInit(FMLPreInitializationEvent event){
 
-GameRegistry.registerBlock(block, "Format");
+GameRegistry.registerBlock(block, "format");
 }
 public void registerRenderers(){}
 public void load(){
@@ -37,14 +39,13 @@ static{
 block = (Format)(new Format().setHardness(100.0F)
 .setResistance(1000.0F)
 .setLightLevel(0.0F)
-.setBlockName("Format")
+.setBlockName("format")
 .setBlockTextureName("format")
 .setLightOpacity(0)
 .setStepSound(Block.soundTypeGlass)
 .setCreativeTab(CreativeTabs.tabBlock)
 );block.setBlockBounds(0.0F,0.0F,0.0F,1.0F,1.0F,1.0F);
-Block.blockRegistry.addObject(1101, "Format", block);
-block.setHarvestLevel("shovel", 100);
+Block.blockRegistry.addObject(1101, "format", block);
 }
 
 public void generateSurface(World world, Random random, int chunkX, int chunkZ){}
@@ -79,10 +80,10 @@ public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity e
           ItemStack itemstack2 = par1EntityPlayer.inventory.armorInventory[2];
           ItemStack itemstack1 = par1EntityPlayer.inventory.armorInventory[1];
           ItemStack itemstack = par1EntityPlayer.inventory.armorInventory[0];
-        if (itemstack3 != null && itemstack3.getItem() == ArmorBit.helmet || itemstack3.getItem() == ArmorBit.body || itemstack3.getItem() == ArmorBit.legs || itemstack3.getItem() == ArmorBit.boots &&
-        		itemstack2 != null && itemstack2.getItem() == ArmorBit.body || itemstack2.getItem() == ArmorBit.legs || itemstack2.getItem() == ArmorBit.boots || itemstack2.getItem() == ArmorBit.helmet&&
-        		itemstack1 != null && itemstack1.getItem() == ArmorBit.legs || itemstack1.getItem() == ArmorBit.boots || itemstack1.getItem() == ArmorBit.helmet || itemstack1.getItem() == ArmorBit.body &&
-        		itemstack != null && itemstack.getItem() == ArmorBit.boots || itemstack.getItem() == ArmorBit.helmet || itemstack.getItem() == ArmorBit.body || itemstack.getItem() == ArmorBit.legs
+        if (itemstack3 != null && (itemstack3.getItem() == ArmorBit.helmet || itemstack3.getItem() == ArmorBit.body || itemstack3.getItem() == ArmorBit.legs || itemstack3.getItem() == ArmorBit.boots )&&
+        		itemstack2 != null && (itemstack2.getItem() == ArmorBit.body || itemstack2.getItem() == ArmorBit.legs || itemstack2.getItem() == ArmorBit.boots || itemstack2.getItem() == ArmorBit.helmet)&&
+        		itemstack1 != null && (itemstack1.getItem() == ArmorBit.legs || itemstack1.getItem() == ArmorBit.boots || itemstack1.getItem() == ArmorBit.helmet || itemstack1.getItem() == ArmorBit.body )&&
+        		itemstack != null && (itemstack.getItem() == ArmorBit.boots || itemstack.getItem() == ArmorBit.helmet || itemstack.getItem() == ArmorBit.body || itemstack.getItem() == ArmorBit.legs)
         		)
         {
             return;
@@ -145,7 +146,7 @@ public int tickRate()
 }
 
 public int quantityDropped(Random par1Random){
-return 1;
+return 0;
 }
 
 }
