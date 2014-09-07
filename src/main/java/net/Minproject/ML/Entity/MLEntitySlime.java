@@ -38,7 +38,6 @@ public class MLEntitySlime extends EntityLiving implements IMob{
 	}
 	@SuppressWarnings("unchecked")
 	public void preInit(FMLPreInitializationEvent event){
-		int entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(MLEntitySlime.class, "Slime(ML)", entityID);
 		EntityRegistry.registerModEntity(MLEntitySlime.class, "Slime(ML)", entityID, instance, 64, 1, true);
 		EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID,  5349438, 8306542));        
