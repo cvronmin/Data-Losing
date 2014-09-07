@@ -177,7 +177,7 @@ public class MLDIM {
 	                          int l1 = j + j1;
 	                          int i2 = k + i1 * b1 - l * b0;
 	                          boolean flag = j1 < 0;
-	                          this.worldServerInstance.setBlock(k1, l1, i2, flag ? Blocks.obsidian : Blocks.air);
+	                          this.worldServerInstance.setBlock(k1, l1, i2, flag ? BlockDati.block : Blocks.air);
 	                      }
 	                  }
 	              }
@@ -562,7 +562,7 @@ public class MLDIM {
 	                          i4 = j2 + k3;
 	                          j4 = k2 + (j3 - 1) * l2 - i3 * l5;
 	                          flag = k3 < 0;
-	                          this.worldServerInstance.setBlock(l3, i4, j4, flag ? Blocks.obsidian : Blocks.air);
+	                          this.worldServerInstance.setBlock(l3, i4, j4, flag ? BlockDati.block : Blocks.air);
 	                      }
 	                  }
 	              }
@@ -578,7 +578,7 @@ public class MLDIM {
 	                      i4 = j2 + k3;
 	                      j4 = k2 + (j3 - 1) * l2;
 	                      flag = j3 == 0 || j3 == 3 || k3 == -1 || k3 == 3;
-	                      this.worldServerInstance.setBlock(l3, i4, j4, (Block)(flag ? Blocks.obsidian : portal), 0, 2);
+	                      this.worldServerInstance.setBlock(l3, i4, j4, (Block)(flag ? BlockDati.block : portal), 0, 2);
 	                  }
 	              }
 
@@ -776,11 +776,11 @@ public class MLDIM {
 	  {
 	  byte b0 = 0;
 	  byte b1 = 0;
-	  if (par1World.getBlock(par2 - 1, par3, par4) == Blocks.obsidian || par1World.getBlock(par2 + 1, par3, par4) == Blocks.obsidian)
+	  if (par1World.getBlock(par2 - 1, par3, par4) == BlockDati.block || par1World.getBlock(par2 + 1, par3, par4) == BlockDati.block)
 	  {
 	  b0 = 1;
 	  }
-	  if (par1World.getBlock(par2, par3, par4 - 1) == Blocks.obsidian || par1World.getBlock(par2, par3, par4 + 1) == Blocks.obsidian)
+	  if (par1World.getBlock(par2, par3, par4 - 1) == BlockDati.block || par1World.getBlock(par2, par3, par4 + 1) == BlockDati.block)
 	  {
 	  b1 = 1;
 	  }
@@ -807,7 +807,7 @@ public class MLDIM {
 	           Block j1 = par1World.getBlock(par2 + b0 * l, par3 + i1, par4 + b1 * l);
 	           if (flag)
 	           {
-	           if (j1 != Blocks.obsidian)
+	           if (j1 != BlockDati.block)
 	           {
 	           return false;
 	           }
@@ -847,7 +847,7 @@ public class MLDIM {
 	  {
 	  ;
 	  }
-	  if (par1World.getBlock(par2, i1 - 1, par4) != Blocks.obsidian)
+	  if (par1World.getBlock(par2, i1 - 1, par4) != BlockDati.block)
 	  {
 	  par1World.setBlockToAir(par2, par3, par4);
 	  }
@@ -858,7 +858,7 @@ public class MLDIM {
 	  {
 	  ;
 	  }
-	  if (j1 == 3 && par1World.getBlock(par2, i1 + j1, par4) == Blocks.obsidian)
+	  if (j1 == 3 && par1World.getBlock(par2, i1 + j1, par4) == BlockDati.block)
 	  {
 	  boolean flag = par1World.getBlock(par2 - 1, par3, par4) == this || par1World.getBlock(par2 + 1, par3, par4) == this;
 	  boolean flag1 = par1World.getBlock(par2, par3, par4 - 1) == this || par1World.getBlock(par2, par3, par4 + 1) == this;
@@ -868,7 +868,7 @@ public class MLDIM {
 	  }
 	  else
 	  {
-	           if ((par1World.getBlock(par2 + b0, par3, par4 + b1) != Blocks.obsidian || par1World.getBlock(par2 - b0, par3, par4 - b1) != this) && (par1World.getBlock(par2 - b0, par3, par4 - b1) != Blocks.obsidian || par1World.getBlock(par2 + b0, par3, par4 + b1) != this))
+	           if ((par1World.getBlock(par2 + b0, par3, par4 + b1) != BlockDati.block || par1World.getBlock(par2 - b0, par3, par4 - b1) != this) && (par1World.getBlock(par2 - b0, par3, par4 - b1) != BlockDati.block || par1World.getBlock(par2 + b0, par3, par4 + b1) != this))
 	           {
 	           par1World.setBlockToAir(par2, par3, par4);
 	           }
