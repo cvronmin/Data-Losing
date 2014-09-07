@@ -37,7 +37,22 @@ public class MLEntityZombie extends EntityMob{
     private boolean field_146076_bu = false;
     private float field_146074_bv = -1.0F;
     private float field_146073_bw;
-
+	public static int mobid = 1010;
+	public Object instance;
+	int entityID = mobid;
+	public void registerRenderers(){
+		RenderingRegistry.registerEntityRenderingHandler(MLEntityZombie.class, new RenderLiving(new ModelZombie(), 0){protected ResourceLocation getEntityTexture(Entity par1Entity){return new ResourceLocation("textures/mlentity/zombie.png");}});
+	}
+	public void serverLoad(FMLServerStartingEvent event){
+		
+	}
+	public void preInit(FMLPreInitializationEvent event){
+		EntityRegistry.registerGlobalEntityID(MLEntityZombie.class, "Zombie(ML)", entityID);
+		EntityRegistry.registerModEntity(MLEntityZombie.class, "Zombie(ML)", entityID, instance, 64, 1, true);
+		EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID,  44975, 7969893));        
+	}
+	public void load() {
+	}
 	public MLEntityZombie(World par1World) {
 		super(par1World);
         this.getNavigator().setBreakDoors(true);
@@ -348,23 +363,4 @@ public class MLEntityZombie extends EntityMob{
             this(par2, par3);
         }
     }
-    
-	public static int mobid = 1010;
-	public Object instance;
-	int entityID = mobid;
-	public void registerRenderers(){
-		RenderingRegistry.registerEntityRenderingHandler(MLEntityZombie.class, new RenderLiving(new ModelZombie(), 0){protected ResourceLocation getEntityTexture(Entity par1Entity){return new ResourceLocation("textures/mlentity/zombie.png");}});
-	}
-	public void serverLoad(FMLServerStartingEvent event){
-		
-	}
-	public void preInit(FMLPreInitializationEvent event){
-		int entityID = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(MLEntityZombie.class, "Zombie(ML)", entityID);
-		EntityRegistry.registerModEntity(MLEntityZombie.class, "Zombie(ML)", entityID, instance, 64, 1, true);
-		EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID,  44975, 7969893));        
-	}
-	public void load() {
-	
-	}
 }
