@@ -53,7 +53,6 @@ public class MLEntityEnderman extends EntityMob{
 	}
 	@SuppressWarnings("unchecked")
 	public void preInit(FMLPreInitializationEvent event){
-		int entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(MLEntityEnderman.class, "Enderman(ML)", entityID);
 		EntityRegistry.registerModEntity(MLEntityEnderman.class, "Enderman(ML)", entityID, instance, 64, 1, true);
 		EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID,  1447446, 0));        
