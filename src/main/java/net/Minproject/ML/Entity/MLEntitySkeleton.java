@@ -60,7 +60,6 @@ public class MLEntitySkeleton extends EntityMob implements IRangedAttackMob{
 	}
 	@SuppressWarnings("unchecked")
 	public void preInit(FMLPreInitializationEvent event){
-		int entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(MLEntitySkeleton.class, "Skeleton(ML)", entityID);
 		EntityRegistry.registerModEntity(MLEntitySkeleton.class, "Skeleton(ML)", entityID, instance, 64, 1, true);
 		EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID,  12698049, 4802889));        
