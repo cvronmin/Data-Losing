@@ -30,16 +30,28 @@ public class ArmorBit {
 	static{
 	ItemArmor.ArmorMaterial enuma = EnumHelper.addArmorMaterial("Bit", 1000, new int[] {20, 70, 50, 30}, 20);
 
-	helmet = (new ItemArmor(enuma, RenderingRegistry.addNewArmourRendererPrefix("bit_1.png"), 0){public void onArmorTick(World world, EntityPlayer entity, ItemStack itemStack){
+	helmet = (new ItemArmor(enuma, RenderingRegistry.addNewArmourRendererPrefix("bit"), 0){public void onArmorTick(World world, EntityPlayer entity, ItemStack itemStack){
+	int i = (int)entity.posX;
+	int j = (int)entity.posY;
+	int k = (int)entity.posZ;
 	}
 	}).setUnlocalizedName("bit_head").setTextureName("bit_helmet");helmet.setMaxStackSize(1);
-	body = (new ItemArmor(enuma, RenderingRegistry.addNewArmourRendererPrefix("bit_1.png"), 1){public void onArmorTick(World world, EntityPlayer entity, ItemStack itemStack){
+	body = (new ItemArmor(enuma, RenderingRegistry.addNewArmourRendererPrefix("bit"), 1){public void onArmorTick(World world, EntityPlayer entity, ItemStack itemStack){
+	int i = (int)entity.posX;
+	int j = (int)entity.posY;
+	int k = (int)entity.posZ;
 	}
-	}).setUnlocalizedName("bit_body").setTextureName("a_chestplate");body.setMaxStackSize(1);
-	legs = (new ItemArmor(enuma, RenderingRegistry.addNewArmourRendererPrefix("bit_1.png"), 2){public void onArmorTick(World world, EntityPlayer entity, ItemStack itemStack){
+	}).setUnlocalizedName("bit_body").setTextureName("bit_chestplate");body.setMaxStackSize(1);
+	legs = (new ItemArmor(enuma, RenderingRegistry.addNewArmourRendererPrefix("bit"), 2){public void onArmorTick(World world, EntityPlayer entity, ItemStack itemStack){
+	int i = (int)entity.posX;
+	int j = (int)entity.posY;
+	int k = (int)entity.posZ;
 	}
 	}).setUnlocalizedName("bit_leggins").setTextureName("bit_leggings");legs.setMaxStackSize(1);
-	boots = (new ItemArmor(enuma, RenderingRegistry.addNewArmourRendererPrefix("bit_1.png"), 3){public void onArmorTick(World world, EntityPlayer entity, ItemStack itemStack){
+	boots = (new ItemArmor(enuma, RenderingRegistry.addNewArmourRendererPrefix("bit"), 3){public void onArmorTick(World world, EntityPlayer entity, ItemStack itemStack){
+	int i = (int)entity.posX;
+	int j = (int)entity.posY;
+	int k = (int)entity.posZ;
 	}
 	}).setUnlocalizedName("bit_boots").setTextureName("bit_boots");boots.setMaxStackSize(1);
 
