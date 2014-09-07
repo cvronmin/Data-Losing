@@ -35,7 +35,6 @@ public class MLEntitySpider extends EntityMob{
 	}
 	@SuppressWarnings("unchecked")
 	public void preInit(FMLPreInitializationEvent event){
-		int entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(MLEntitySpider.class, "Spider(ML)", entityID);
 		EntityRegistry.registerModEntity(MLEntitySpider.class, "Spider(ML)", entityID, instance, 64, 1, true);
 		EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID,  3419431, 11013646));        
