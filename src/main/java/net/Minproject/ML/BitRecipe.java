@@ -14,6 +14,8 @@ public class BitRecipe {
 		ItemStack legs = new ItemStack(ArmorBit.legs, 1, 0);
 		ItemStack boots = new ItemStack(ArmorBit.boots, 1, 0);
 		ItemStack sword = new ItemStack(ItemBSword.bit_sword, 1, 0);
+		ItemStack dati = new ItemStack(BlockDati.block, 1, 0);
+		ItemStack indati = new ItemStack(BlockDati_Invert.block, 1, 0);
 
 	GameRegistry.addRecipe(helmet, new Object[]{
 			"III", "I I", Character.valueOf('I'), new ItemStack(ItemBit.bit, 1), });
@@ -25,7 +27,10 @@ public class BitRecipe {
 			"I I", "I I", Character.valueOf('I'), new ItemStack(ItemBit.bit, 1), });
 	GameRegistry.addRecipe(sword, new Object[]{
 			"I", "I", "A", Character.valueOf('I'), new ItemStack(ItemBit.bit, 1), Character.valueOf('A'), new ItemStack(Items.stick, 1)});
-
+	GameRegistry.addRecipe(dati, new Object[]{
+			"III", "III", "III", Character.valueOf('I'), new ItemStack(ItemBit.bit, 1), });
+	GameRegistry.addRecipe(indati, new Object[]{
+			"III", "III", "III", Character.valueOf('I'), new ItemStack(ItemBit.bit_inverted, 1), });
 		}
 	public void serverLoad(FMLServerStartingEvent event) {
 		// TODO Auto-generated method stub
