@@ -53,7 +53,6 @@ public class DL implements IFuelHandler, IWorldGenerator {
     MLEntitySpider ml4;
     MLEntitySlime ml5;
     MLEntityEnderman ml8;
-    CommandTest comtest = new CommandTest();
     RItemTab tab = new RItemTab();
 	private World par1World;
     public DL(){
@@ -100,7 +99,6 @@ public class DL implements IFuelHandler, IWorldGenerator {
     	this.wda.serverLoad(event);
         this.format.serverLoad(event);
         this.bit.serverLoad(event);
-        this.comtest.serverLoad(event);
     	this.dim1.serverLoad(event);
     	this.sword.serverLoad(event);
     	this.armor.serverLoad(event);
@@ -188,18 +186,6 @@ public class DL implements IFuelHandler, IWorldGenerator {
         {
         case 128:
               return new ContainerTest(player.inventory, (TileEntityTest)player.worldObj.getTileEntity(x, y, z));
-        case 19:
-              return new GuiScreenTest.GuiContainerMod(player);
-        case 20:
-        	return new GuiScreenOver.GuiContainerMod(player);
-        case 21:
-        	return new GuiScreenWin.GuiContainerMod(player);
-        case 22:
-        	return new GuiScreenDis1.GuiContainerMod(player);
-        case 23:
-        	return new GuiScreenDis2.GuiContainerMod(player);
-        case 24:
-        	return new GuiScreenDis3.GuiContainerMod(player);
         }
         	return null;
         }
@@ -208,18 +194,6 @@ public class DL implements IFuelHandler, IWorldGenerator {
         {
         case 128:
             return new GuiTest(player.inventory, (TileEntityTest)player.worldObj.getTileEntity(x, y, z));
-        case 19:
-            return new GuiScreenTest(world , x , y, z, player);
-        case 20:
-        	return new GuiScreenOver();
-        case 21:
-        	return new GuiScreenWin();
-        case 22:
-        	return new GuiScreenDis1(world, x, y, z, player);
-        case 23:
-        	return new GuiScreenDis2();
-        case 24:
-        	return new GuiScreenDis3();
         }
         	return null;
         }
