@@ -20,20 +20,20 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = DL.MODID,name = "dataloss", version = DL.VERSION)
-public class DL implements IFuelHandler, IWorldGenerator {
-    public static final String MODID = "DL";
+@Mod(modid = ML.MODID, version = ML.VERSION)
+public class ML implements IFuelHandler, IWorldGenerator {
+    public static final String MODID = "ML";
     public static final String VERSION = "1.0";
     @SidedProxy(clientSide="net.Minproject.ML.ClientProxyML", serverSide="net.Minproject.ML.CommonProxyML")
     public static CommonProxyML proxy;
 
-    @Instance("DL")
-    public static DL instance;
+    @Instance("ML")
+    public static ML instance;
     BiomeML biome;
     BlockDati dati;
-    BlockWakeDati wda;
     BlockFormat format;
     ItemBit bit;
+//    MLDamageSource death;
     MLDIM dim1;
     ItemBSword sword;
     ArmorBit armor;
@@ -45,12 +45,12 @@ public class DL implements IFuelHandler, IWorldGenerator {
     MLEntitySlime ml5;
     MLEntityEnderman ml8;
 	private World par1World;
-    public DL(){
+    public ML(){
     	this.biome = new BiomeML();
 		this.dati = new BlockDati();
-		this.wda = new BlockWakeDati();
         this.format = new BlockFormat();
         this.bit = new ItemBit();
+//       this.death = new MLDamageSource(null);
 		this.dim1 = new MLDIM();
 		this.sword = new ItemBSword();
 		this.armor = new ArmorBit();
@@ -76,17 +76,17 @@ public class DL implements IFuelHandler, IWorldGenerator {
       if (world.provider.dimensionId == 0) this.dim1.generateSurface(world, random, chunkX, chunkZ);
       if (world.provider.dimensionId == -1) this.dati.generateNether(world, random, chunkX, chunkZ);
       if (world.provider.dimensionId == 0) this.dati.generateSurface(world, random, chunkX, chunkZ);
-      if (world.provider.dimensionId == 0) this.wda.generateSurface(world, random, chunkX, chunkZ);
       if (world.provider.dimensionId == -1) this.biome.generateNether(world, random, chunkX, chunkZ);
       if (world.provider.dimensionId == 0) this.biome.generateSurface(world, random, chunkX, chunkZ);
+//      if (world.provider.dimensionId == 1010) this.dati.generateMLDIM(world, random, chunkX, chunkZ);
     }
     @Mod.EventHandler
     public void serverLoad(FMLServerStartingEvent event) {
     	this.biome.serverLoad(event);
     	this.dati.serverLoad(event);
-    	this.wda.serverLoad(event);
         this.format.serverLoad(event);
         this.bit.serverLoad(event);
+//        this.death.serverLoad(event);
     	this.dim1.serverLoad(event);
     	this.sword.serverLoad(event);
     	this.armor.serverLoad(event);
@@ -102,9 +102,10 @@ public class DL implements IFuelHandler, IWorldGenerator {
     public void preInit(FMLPreInitializationEvent event) {
     	this.biome.instance = instance;
         this.dati.instance = instance;
-        this.wda.instance = instance;
         this.format.instance = instance;
         this.bit.instance = instance;
+
+//        this.death.instance = instance;
         this.dim1.instance = instance;
         this.sword.instance = instance;
         this.armor.instance = instance;
@@ -117,9 +118,9 @@ public class DL implements IFuelHandler, IWorldGenerator {
         this.ml8.instance = instance;
         this.biome.preInit(event);
     	this.dati.preInit(event);
-    	this.wda.preInit(event);
         this.format.preInit(event);
         this.bit.preInit(event);
+ //       this.death.preInit(event);
     	this.dim1.preInit(event);
     	this.sword.preInit(event);
     	this.armor.preInit(event);
@@ -138,12 +139,12 @@ public class DL implements IFuelHandler, IWorldGenerator {
     {
         GameRegistry.registerFuelHandler(this);
         GameRegistry.registerWorldGenerator(this, 1);
-        NetworkRegistry.INSTANCE.registerGuiHandler(this, new DL.GuiHandler());
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new ML.GuiHandler());
         this.biome.load();
     	this.dati.load();
-    	this.wda.load();
         this.format.load();
         this.bit.load();
+//        this.death.load();
     	this.dim1.load();
     	this.sword.load();
     	this.armor.load();
