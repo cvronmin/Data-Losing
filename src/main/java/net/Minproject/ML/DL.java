@@ -3,10 +3,16 @@ package net.Minproject.ML;
 import java.util.Random;
 
 import net.Minproject.ML.Entity.*;
+import net.Minproject.ML.RItem.MLItems;
+import net.Minproject.ML.RItem.RItemTab;
+import net.Minproject.ML.test.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
@@ -26,14 +32,17 @@ public class DL implements IFuelHandler, IWorldGenerator {
     public static final String VERSION = "1.0";
     @SidedProxy(clientSide="net.Minproject.ML.ClientProxyML", serverSide="net.Minproject.ML.CommonProxyML")
     public static CommonProxyML proxy;
-
+	public static final EventListenerML eventListener = new EventListenerML();
     @Instance("DL")
     public static DL instance;
     BiomeML biome;
     BlockDati dati;
     BlockWakeDati wda;
+    BlockDati_Invert inda = new BlockDati_Invert();
     BlockFormat format;
+    BlockTest test;
     ItemBit bit;
+    ItemRPIDT rpidt;
     MLDIM dim1;
     ItemBSword sword;
     ArmorBit armor;
@@ -44,13 +53,17 @@ public class DL implements IFuelHandler, IWorldGenerator {
     MLEntitySpider ml4;
     MLEntitySlime ml5;
     MLEntityEnderman ml8;
+    CommandTest comtest = new CommandTest();
+    RItemTab tab = new RItemTab();
 	private World par1World;
     public DL(){
     	this.biome = new BiomeML();
 		this.dati = new BlockDati();
 		this.wda = new BlockWakeDati();
         this.format = new BlockFormat();
+        this.test = new BlockTest();
         this.bit = new ItemBit();
+        this.rpidt = new ItemRPIDT();
 		this.dim1 = new MLDIM();
 		this.sword = new ItemBSword();
 		this.armor = new ArmorBit();
@@ -87,6 +100,7 @@ public class DL implements IFuelHandler, IWorldGenerator {
     	this.wda.serverLoad(event);
         this.format.serverLoad(event);
         this.bit.serverLoad(event);
+        this.comtest.serverLoad(event);
     	this.dim1.serverLoad(event);
     	this.sword.serverLoad(event);
     	this.armor.serverLoad(event);
@@ -102,8 +116,10 @@ public class DL implements IFuelHandler, IWorldGenerator {
     public void preInit(FMLPreInitializationEvent event) {
     	this.biome.instance = instance;
         this.dati.instance = instance;
+        this.inda.instance = instance;
         this.wda.instance = instance;
         this.format.instance = instance;
+        this.test.instance = instance;
         this.bit.instance = instance;
         this.dim1.instance = instance;
         this.sword.instance = instance;
@@ -115,10 +131,13 @@ public class DL implements IFuelHandler, IWorldGenerator {
         this.ml4.instance = instance;
         this.ml5.instance = instance;
         this.ml8.instance = instance;
+
         this.biome.preInit(event);
     	this.dati.preInit(event);
+    	this.inda.preInit(event);
     	this.wda.preInit(event);
         this.format.preInit(event);
+        this.test.preInit(event);
         this.bit.preInit(event);
     	this.dim1.preInit(event);
     	this.sword.preInit(event);
@@ -131,7 +150,7 @@ public class DL implements IFuelHandler, IWorldGenerator {
     	this.ml5.preInit(event);
     	this.ml8.preInit(event);
         proxy.registerRenderers(this); 
-
+        MLItems.initItems();
 }
     @EventHandler
     public void init(FMLInitializationEvent event)
@@ -139,6 +158,10 @@ public class DL implements IFuelHandler, IWorldGenerator {
         GameRegistry.registerFuelHandler(this);
         GameRegistry.registerWorldGenerator(this, 1);
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new DL.GuiHandler());
+        registerTileEntities();
+	 	AchievementPage.registerAchievementPage(new AchievementDL());
+		MinecraftForge.EVENT_BUS.register(eventListener);
+		FMLCommonHandler.instance().bus().register(eventListener);
         this.biome.load();
     	this.dati.load();
     	this.wda.load();
@@ -155,11 +178,49 @@ public class DL implements IFuelHandler, IWorldGenerator {
     	this.ml5.load();
     	this.ml8.load();
 }
+	public void registerTileEntities()
+	{
+        GameRegistry.registerTileEntity(TileEntityTest.class, "TileEntityTest");
+	}
     public static class GuiHandler implements IGuiHandler {
         public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-        return null;
+                switch(id)
+        {
+        case 128:
+              return new ContainerTest(player.inventory, (TileEntityTest)player.worldObj.getTileEntity(x, y, z));
+        case 19:
+              return new GuiScreenTest.GuiContainerMod(player);
+        case 20:
+        	return new GuiScreenOver.GuiContainerMod(player);
+        case 21:
+        	return new GuiScreenWin.GuiContainerMod(player);
+        case 22:
+        	return new GuiScreenDis1.GuiContainerMod(player);
+        case 23:
+        	return new GuiScreenDis2.GuiContainerMod(player);
+        case 24:
+        	return new GuiScreenDis3.GuiContainerMod(player);
+        }
+        	return null;
         }
         public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) { 
+            switch(id)
+        {
+        case 128:
+            return new GuiTest(player.inventory, (TileEntityTest)player.worldObj.getTileEntity(x, y, z));
+        case 19:
+            return new GuiScreenTest(world , x , y, z, player);
+        case 20:
+        	return new GuiScreenOver();
+        case 21:
+        	return new GuiScreenWin();
+        case 22:
+        	return new GuiScreenDis1(world, x, y, z, player);
+        case 23:
+        	return new GuiScreenDis2();
+        case 24:
+        	return new GuiScreenDis3();
+        }
         	return null;
         }
       }
