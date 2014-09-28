@@ -1,0 +1,43 @@
+package net.Minproject.ML;
+
+import java.util.HashMap;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import net.Minproject.ML.test.BlockTest;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+
+public class EventListenerML {
+	protected HashMap<String, InventoryPlayer> playerKeepsMap;
+	public EventListenerML() {
+		this.playerKeepsMap = new HashMap();
+	}
+	@SubscribeEvent
+	public void pickupItem(EntityItemPickupEvent event) {
+		Item item = event.item.getEntityItem().getItem();
+		if(item == ItemBit.bit){
+			event.entityPlayer.triggerAchievement(AchievementDL.dataGet);
+			}
+	}
+	@SubscribeEvent
+	public void onCrafting(PlayerEvent.ItemCraftedEvent event) {
+		ItemStack itemStack = event.crafting;
+		EntityPlayer player = event.player;
+		if (itemStack.getItem() == ItemRPIDT.rpidt) {
+			player.triggerAchievement(AchievementDL.repair);
+			}
+		if (itemStack.getItem() == Item.getItemFromBlock(BlockTest.block)) {
+			player.triggerAchievement(AchievementDL.repairing);
+		}
+		if (itemStack.getItem() == Item.getItemFromBlock(BlockDati.block)) {
+			player.triggerAchievement(AchievementDL.dataBlocking);
+		}
+		if (itemStack.getItem() == Item.getItemFromBlock(BlockDati_Invert.block)) {
+			player.triggerAchievement(AchievementDL.invertIt);
+		}
+	}
+}
